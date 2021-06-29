@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <string.h>
+
+void quet(char a[], char b, char c);
+
+main()
+{
+    char a[100];
+    char b, c;
+    scanf("%c %c", &b, &c);
+    fflush(stdin);
+    scanf("%s", a);
+    quet(a, b, c);
+    printf("%s", a);
+}
+
+void quet(char a[], char b, char c)
+{
+    int i;
+    for (i = 0; i < strlen(a); i++)
+    {
+        if (a[i] == b)
+        {
+            a[i] = c;
+        }
+    }
+}
