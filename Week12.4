@@ -1,0 +1,32 @@
+#include <stdio.h>
+int n;
+void input(int a[], int n)
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+}
+
+int main()
+{
+    scanf("%d", &n);
+    int a[n + 5];
+    input(a, n);
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        int j;
+        for (j = i; j < n; j++)
+        {
+            int k;
+            for (k = i; k <= j; k++)
+            {
+                printf("%d ", a[k]);
+            }
+            printf("\n");
+        }
+    }
+    return 0;
+}
