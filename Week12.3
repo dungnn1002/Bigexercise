@@ -1,0 +1,31 @@
+#include <stdio.h>
+int n;
+void getSale(int *ptr, int n)
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        printf("Mat hang %d: ", i + 1);
+        scanf("%d", ptr + i);
+    }
+}
+
+int totalSale(int *ptr, int n)
+{
+    int sum = 0;
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        sum += *(ptr + i);
+    }
+    return sum;
+}
+
+int main()
+{
+    scanf("%d", &n);
+    int a[100];
+    getSale(a, n);
+    printf("Tong sale la: %d ", totalSale(a, n));
+    return 0;
+}
