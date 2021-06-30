@@ -1,0 +1,85 @@
+#include <stdio.h>
+#include <string.h>
+
+typedef struct
+{
+    char id[6];
+    char name[31];
+    float grade;
+    char classement;
+} student;
+
+void input(student a[], int n)
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        printf("nhap vao sinh vien %d :\n", i + 1);
+        printf("nhap ID :");
+        fflush(stdin);
+        scanf("%s", a[i].id);
+        printf("\nnhap ten :");
+        fflush(stdin);
+        gets(a[i].name);
+        printf("\nnhap diem so :");
+        scanf("%f", &a[i].grade);
+    }
+}
+
+void diemchu(student a[], int n)
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        if (a[i].grade >= 9 && a[i].grade <= 10)
+            a[i].classement = 'A';
+        if (a[i].grade >= 8 && a[i].grade < 9)
+            a[i].classement = 'B';
+        if (a[i].grade >= 6.5 && a[i].grade < 8)
+            a[i].classement = 'C';
+        if (a[i].grade >= 0 && a[i].grade < 6.5)
+            a[i].classement = 'D';
+        ;
+    }
+}
+
+void sapxep(student a[], int n)
+{
+    int i, j;
+    student temp;
+    for (i = 0; i < n - 1; i++)
+    {
+        for (j = i + 1; j < n; j++)
+        {
+            if (a[j].grade > a[i].grade)
+            {
+                temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+            }
+        }
+    }
+}
+
+void output(student a[], int n)
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        printf("%s ", a[i].id);
+        fflush(stdin);
+        printf("%s %.2f %c\n", a[i].name, a[i].grade, a[i].classement);
+    }
+}
+
+main()
+{
+    int n;
+    scanf("%d", &n);
+    student a[n + 5];
+    input(a, n);
+    diemchu(a, n);
+    sapxep(a, n);
+    output(a, n);
+    return 0;
+}
