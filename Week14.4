@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+int n;
+typedef struct phanso
+{
+    int tu;
+    int mau;
+} fraction;
+
+void input(fraction a[])
+{
+    int i = 0;
+    while (i < n)
+    {
+        printf("Phan so %d: \n", i + 1);
+        printf("Nhap tu: ");
+        scanf("%d", &a[i].tu);
+        printf("Nhap mau: ");
+        scanf("%d", &a[i].mau);
+        if (a[i].mau == 0)
+        {
+            printf("Ban nhap sai mau so\n");
+            printf("Vui long nhap lai!");
+            continue;
+        }
+        else
+        {
+            i++;
+        }
+    }
+}
+
+int UCLN(int a, int b)
+{
+    a = abs(a);
+    b = abs(b);
+    while (a != b)
+    {
+        if (a > b)
+        {
+            a = a - b;
+        }
+        else
+        {
+            b = b - a;
+        }
+    }
+    return a;
+}
+
+void rutgon(fraction a[])
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        int c = UCLN(a[i].tu, a[i].mau);
+        a[i].tu = a[i].tu / c;
+        a[i].mau = a[i].mau / c;
+    }
+}
+
+void output(fraction a[])
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        printf("%d/%d ", a[i].tu, a[i].mau);
+    }
+}
+
+void daonguoc(fraction a[])
+{
+    int i;
+    for (i = 0; i < n; i++)
+    {
+        printf("%d/%d ", a[i].mau, a[i].tu);
+    }
+}
+void sosanh()
+{
+    fraction a[2];
+    printf("Nhap phan so 1\n");
+    printf("Nhap tu so: ");
+    scanf("%d", &a[0].tu);
+    printf("Nhap mau so: ");
+    scanf("%d", &a[0].mau);
+    printf("Nhap phan so 2\n");
+    printf("Nhap tu so: ");
+    scanf("%d", &a[1].tu);
+    printf("Nhap mau so: ");
+    scanf("%d", &a[1].mau);
+    float c;
+    c = (float)a[0].tu / a[0].mau - a[1].tu / a[1].mau;
+    if (c > 0)
+    {
+        printf("%d/%d>%d/%d", a[0].tu, a[0].mau, a[1].tu, a[1].mau);
+    }
+    else if (c < 0)
+    {
+        printf("%d/%d<%d/%d", a[0].tu, a[0].mau, a[1].tu, a[1].mau);
+    }
+    else
+    {
+        printf("%d/%d=%d/%d", a[0].tu, a[0].mau, a[1].tu, a[1].mau);
+    }
+}
+
+int main()
+{
+    scanf("%d", &n);
+    fraction a[100];
+    input(a);
+    rutgon(a);
+    output(a);
+    printf("\n");
+    daonguoc(a);
+    printf("\n");
+    sosanh();
+    return 0;
+}
